@@ -58,6 +58,8 @@ The hash can never be decrypted, but instead bcrypt can re-hash an attempted pas
 
 - [ ] What does bcrypt do to slow down attackers?
 
+ Bcrypt is extremely resistant to rainbow table-based attacks, it can expand its key fator to compensate for increase in computing power by slowing its hash speed. 
+ 
 - [ ] What are the three parts of the JSON Web Token?
 
 Header, Payload, Signature

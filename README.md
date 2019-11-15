@@ -63,5 +63,3 @@ Build a front end to show the jokes.
 - [ ] Add a React client that connects to the API and has pages for `Sign Up`, `Sign In` and showing a list of `Jokes`.
 - [ ] Once you have the functionality down, style it!
 
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6Implc3VzIiwiaWF0IjoxNTczODAxMDk3LCJleHAiOjE1NzM4ODc0OTd9.tUQ32Gmn47chJ9YHOBxQ6oE7X3N7WpWSe311XyCnN6I

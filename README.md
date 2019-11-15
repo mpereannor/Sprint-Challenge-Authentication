@@ -40,11 +40,29 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What is the purpose of using _sessions_?
 
+By default Express requests are sequential and no request can be linked to each other. There is no way to know if this request comes from a client that already performed a request previously.
+
+Users cannot be identified unless using some kind of mechanism that makes it possible.
+
+That’s what sessions are.
+
+When implemented, every user of your API or website will be assigned a unique session, and this allows you to store the user state.
+
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+
+Bcrypt helps to store password in a secure manner by writing a hashing function.
+
+We also get different hashes from the same input password because bcrypt creates a random string (the salt) to hash along with the input password. The salt is then stored in the hash itself.
+The hash can never be decrypted, but instead bcrypt can re-hash an attempted password to see if it matches the stored hash.
+
 
 - [ ] What does bcrypt do to slow down attackers?
 
 - [ ] What are the three parts of the JSON Web Token?
+
+Header, Payload, Signature
+
+
 
 ## Minimum Viable Product
 

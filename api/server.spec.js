@@ -1,7 +1,13 @@
 const request = require('supertest');
 const server = require('./server');
 
-// const authServer = require('../auth/auth-router');
+const bcrypt = require('bcryptjs');
+const db = require('../database/dbConfig');
+
+
+beforeEach(async () => {
+    await db('users').truncate()
+  })
 
 describe('server', () => { 
     describe('[POST] /register endpoint', () => { 
@@ -9,27 +15,24 @@ describe('server', () => {
             expect(process.env.DB_ENV).toBe('testing')
         })
 
-        test('should return 201 OK status', () => {
-            let userInfo = { 
-                username: "testing",
-                password: "testing"
-            }
-
-            request(server).post('/register',userInfo)
-            .set('accept', 'application/json')
-            .expect(201)
-        })
-
+        
         test('should register a new user', async () => { 
             const res = await request(server)
-            .post('/register')
+            .post('/api/auth/register')
             .send({
                 username: 'king',
                 password: 'power'
             })
-            expect(res.status).toEqual(201)
-            expect(res.body).toHaveProperty('username')
+            expect(res.body.username).toMatch(/king/)
+            // expect(res.status).toEqual(201)
+            // expect(res.body).toHaveProperty('username')
         })      
+        test('should return 201 OK status', async () => {
+            
+            response = await request(server).post('/api/auth/register')
+            .send({ username: 'king', password: 'power'})
+            expect(response.status).toBe(201)
+        })
     })
 }) 
 

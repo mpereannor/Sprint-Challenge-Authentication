@@ -10,12 +10,12 @@ beforeEach(async () => {
   })
 
 describe('server', () => { 
+
     describe('[POST] /register endpoint', () => { 
         test('the db env is testing', () => { 
             expect(process.env.DB_ENV).toBe('testing')
         })
 
-        
         test('should register a new user', async () => { 
             const res = await request(server)
             .post('/api/auth/register')
@@ -24,8 +24,6 @@ describe('server', () => {
                 password: 'power'
             })
             expect(res.body.username).toMatch(/king/)
-            // expect(res.status).toEqual(201)
-            // expect(res.body).toHaveProperty('username')
         })      
         test('should return 201 OK status', async () => {
             
@@ -34,10 +32,23 @@ describe('server', () => {
             expect(response.status).toBe(201)
         })
     })
+
+    describe('[POST] /login endpoint', () => { 
+        test( 'should return 200 status', async () => { 
+            await db('users').insert ({ 
+                username: 'king', password: bcrypt.hashSync('power', 10)
+            })
+            const res = await request(server).post('/api/auth/login')
+            .send({ 
+                username: 'king',
+                password: 'power'
+            })
+            .set('Content-Type', 'application/json')
+            expect(res.status).toBe(200)
+        })
+
 }) 
 
-
-describe('server', () => { 
     describe('[GET] / endpoint', () => {
     
         test('shoud return 200 OK', async () => { 
